@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserEmailDto;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserServiceImpl;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -47,10 +48,26 @@ class UserController {
                 .map(userMapper::toDto)
                 .toList();
     }
-
+    //dodaje użytkownika
     @PostMapping("/adduser")
     public User addUser(@RequestBody UserDto userDto){
         return userService.createUser(userMapper.toEntitySave(userDto));
+    }
+
+    //usuwa po id
+    @ResponseStatus(OK)
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Long> deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+        return new ResponseEntity<>(userId,OK);
+    }
+    //szuka po email
+    @GetMapping("/email")
+    public List<UserEmailDto> getUserByEmail(@RequestParam String email){
+        return userService.getUserByEmail(email)
+                .stream()
+                .map(userMapper::userEmailDto)
+                .toList();
     }
 
 
