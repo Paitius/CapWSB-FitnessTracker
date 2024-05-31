@@ -1,12 +1,19 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.internal.UserDto;
+import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
+import com.capgemini.wsb.fitnesstracker.user.internal.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -24,15 +31,28 @@ class UserController {
                           .map(userMapper::toDto)
                           .toList();
     }
-
-    @PostMapping
-    public User addUser(@RequestBody UserDto userDto) throws InterruptedException {
-
-        // Demonstracja how to use @RequestBody
-        System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
-
-        // TODO: saveUser with Service and return User
-        return null;
+    // Wylistowanie uzytkownikow zawierajac tylko id, imie i nazwisko
+    @GetMapping("/simple")
+    public List<UserSimpleDto> getUsersSimple(){
+        return userService.findAllUsers()
+                .stream()
+                .map(userMapper::toUserSimpleDto)
+                .toList();
     }
+    //Zwraca uzytkownika o podanym id
+    @GetMapping("/{userId}")
+    public List<UserDto> getUser(@PathVariable Long userId){
+        return userService.getUser(userId)
+                .stream()
+                .map(userMapper::toDto)
+                .toList();
+    }
+
+    @PostMapping("/adduser")
+    public User addUser(@RequestBody UserDto userDto){
+        User user = userService.createUser(userMapper.toEntitySave(userDto));
+        return user;
+    }
+
 
 }
