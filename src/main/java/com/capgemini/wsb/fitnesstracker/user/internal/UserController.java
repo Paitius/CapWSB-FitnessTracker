@@ -70,5 +70,9 @@ class UserController {
                 .toList();
     }
 
-
+    @ResponseStatus(ACCEPTED)
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody UserDto changedUser) {
+        return new ResponseEntity<>(userService.updateUser(userId, userMapper.toEntitySave(changedUser)), ACCEPTED);
+    }
 }
