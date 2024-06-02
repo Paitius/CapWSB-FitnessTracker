@@ -139,7 +139,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                     "startTime": "2023-06-01T19:00:00",
                     "endTime": "2023-06-01T20:00:00",
                     "activityType": "RUNNING",
-                    "distance": 9.52,
+                    "distance": 10,
                     "averageSpeed": 8.2
                 }
                 """.formatted(user1.getId());
