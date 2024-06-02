@@ -7,7 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Interface (API) for modifying operations on {@link Training} entities through the API.
+ * Implementing classes are responsible for executing changes within a database transaction, whether by continuing an existing transaction or creating a new one if required.
+ */
 public interface TrainingService {
 
     Training createTraining(Training training);
@@ -22,7 +25,7 @@ public interface TrainingService {
 
     List<Training> findALlTrainingsByActivity(ActivityType activityType);
 
-    Training updateTraining(Training training);
+    void updateTraining(Training training);
 
     //void deleteAllTrainingsByUser(Long userId);
 }

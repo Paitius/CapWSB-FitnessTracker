@@ -18,7 +18,7 @@ import java.util.Optional;
 class TrainingServiceImpl implements TrainingService, TrainingProvider {
 
 
-    private final TrainingProvider trainingProvider;
+
     private final TrainingRepository trainingRepository;
 
     @Override
@@ -27,8 +27,7 @@ class TrainingServiceImpl implements TrainingService, TrainingProvider {
     }
 
     @Override
-    public List<Training> getAllTrainings() {
-        return trainingRepository.findAll(); }
+    public List<Training> getAllTrainings() { return trainingRepository.findAll(); }
 
     @Override
     public List<Training> getAllTrainingsForDedicatedUser(long userId) {
@@ -62,8 +61,7 @@ class TrainingServiceImpl implements TrainingService, TrainingProvider {
     }
 
     @Override
-    public Training updateTraining(Training training){
+    public void updateTraining(Training training) {
         log.info("Updating Training {}", training);
-        return trainingRepository.save(training);
     }
 }

@@ -15,14 +15,11 @@ interface TrainingRepository extends JpaRepository<Training, Long> {
     @Query("select training from Training training where training.user.id = :userID")
     List<Training> findAllTrainingsByUserID(@Param("userID") long userID);
 
-
     @Query("select training from Training training where training.endTime < :today")
     List<Training> findAllFinishedTrainings(@Param("today") LocalDate today);
 
-
     @Query("select training from Training training where training.endTime < :date")
     List<Training> findAllFinishedTrainingsBefore(@Param("date") Date date);
-
 
     @Query("select training from Training training where training.activityType = :activity")
     List<Training> findAllTrainingsByActivity(@Param("activity") ActivityType activity);
