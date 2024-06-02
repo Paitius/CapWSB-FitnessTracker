@@ -2,17 +2,16 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserEmailDto;
-import com.capgemini.wsb.fitnesstracker.user.internal.UserDto;
+
 import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
-import com.capgemini.wsb.fitnesstracker.user.internal.UserServiceImpl;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.springframework.http.HttpStatus.*;
 
