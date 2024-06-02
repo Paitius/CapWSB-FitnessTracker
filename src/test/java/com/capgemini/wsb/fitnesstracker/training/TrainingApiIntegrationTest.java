@@ -87,7 +87,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+00:00");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        mockMvc.perform(get("/v1/trainings/finished/{afterTime}", "2024-05-18").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/trainings/finishedTrainings/beforeDate/{date}", "2024-05-18").contentType(MediaType.APPLICATION_JSON))
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -136,14 +136,14 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         String requestBody = """
                 {
                     "userId": "%s",
-                    "startTime": "2024-04-01T11:00:00",
-                    "endTime": "2024-04-01T11:00:00",
+                    "startTime": "2023-06-01T19:00:00",
+                    "endTime": "2023-06-01T20:00:00",
                     "activityType": "RUNNING",
-                    "distance": 10.52,
+                    "distance": 9.52,
                     "averageSpeed": 8.2
                 }
                 """.formatted(user1.getId());
-        mockMvc.perform(post("/v1/trainings").contentType(MediaType.APPLICATION_JSON).content(requestBody))
+        mockMvc.perform(post("/v1/trainings/addTraining").contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.user.id").value(user1.getId()))
@@ -163,14 +163,14 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         String requestBody = """
                 {
                 "userId": "%s",
-                "startTime": "2022-04-01T10:00:00",
-                "endTime": "2022-04-01T11:00:00",
-                "activityType": "TENNIS",
-                "distance": 0.0,
-                "averageSpeed": 0.0
+                "startTime": "2023-06-01T19:00:00",
+                "endTime": "2023-06-01T20:00:00",
+                "activityType": "RUN",
+                "distance": 10.0,
+                "averageSpeed": 10.0
                 }
                 """.formatted(user1.getId());
-        mockMvc.perform(put("/v1/trainings/{trainingId}", training1.getId()).contentType(MediaType.APPLICATION_JSON).content(requestBody))
+        mockMvc.perform(put("/update/byAverageSpeed/{id}", training1.getId()).contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.user.id").value(user1.getId()))
@@ -223,4 +223,3 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
 
 }
-
