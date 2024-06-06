@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -33,6 +34,9 @@ class TrainingController {
         return  trainingService.getFinishedTrainingAfterDate(date).stream().map(trainingMapper::toDto).toList();
     }
 
-
+    @GetMapping("/activityType")
+    public List<TrainingDto> getAllTreningsForActivityType(@RequestParam String activityType){
+        return trainingService.getAllTreningForActivityType(ActivityType.valueOf(activityType)).stream().map(trainingMapper::toDto).collect(Collectors.toList());
+    }
 
 }

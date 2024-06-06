@@ -18,4 +18,10 @@ interface TrainingRepository extends JpaRepository<Training, Long> {
     default List<Training> findTraningAfterDate(Date date){
         return findAll().stream().filter(training -> training.getEndTime().after(date)).collect(Collectors.toList());
     }
+
+    default List<Training> findTraningsForActivityType(ActivityType activityType){
+        return findAll().stream()
+                .filter(training -> Objects.equals(training.getActivityType(), activityType))
+                .toList();
+    }
 }

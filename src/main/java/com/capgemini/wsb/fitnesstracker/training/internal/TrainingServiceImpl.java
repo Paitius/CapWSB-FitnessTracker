@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +39,9 @@ public class TrainingServiceImpl implements TrainingProvider {
     @Override
     public List<Training> getFinishedTrainingAfterDate(Date date){
         return trainingRepository.findTraningAfterDate(date);
+    }
+
+    public List<Training> getAllTreningForActivityType(ActivityType activityType) {
+        return trainingRepository.findTraningsForActivityType(activityType);
     }
 }
