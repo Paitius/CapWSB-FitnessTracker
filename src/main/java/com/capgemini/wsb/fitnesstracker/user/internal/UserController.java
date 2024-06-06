@@ -8,10 +8,12 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -74,5 +76,14 @@ class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody UserDto changedUser) {
         return new ResponseEntity<>(userService.updateUser(userId, userMapper.toEntitySave(changedUser)), ACCEPTED);
+    }
+
+
+    @GetMapping("/older/{time}")
+    public List<UserDto> getUserOlderThan(@PathVariable("time") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return userService.findUserOlderThen(date)
+                .stream()
+                .map(userMapper::toDto)
+                .toList();
     }
 }

@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -35,12 +36,13 @@ class TrainingController {
         return trainingService.getAllTrainingsForDedicatedUser(userId).stream().map(trainingMapper::toDto).toList();
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addTraining")
     public Training addTraining(@RequestBody TrainingDto trainingDto) {
         return trainingService.createTraining(trainingMapper.toEntity(trainingDto));
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/finishedTrainings")
     public List<TrainingDto> getFinishedTrainings() {
         return trainingService.findAllFinishedTrainings().stream().map(trainingMapper::toDto).toList();
