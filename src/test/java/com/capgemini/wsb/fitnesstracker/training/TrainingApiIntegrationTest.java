@@ -139,7 +139,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                     "startTime": "2023-06-01T19:00:00",
                     "endTime": "2023-06-01T20:00:00",
                     "activityType": "RUNNING",
-                    "distance": 10,
+                    "distance": 10.52,
                     "averageSpeed": 8.2
                 }
                 """.formatted(user1.getId());
@@ -170,7 +170,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 "averageSpeed": 10.0
                 }
                 """.formatted(user1.getId());
-        mockMvc.perform(put("/update/byAverageSpeed/{id}", training1.getId()).contentType(MediaType.APPLICATION_JSON).content(requestBody))
+        mockMvc.perform(put("/update/{trainingId}", training1.getId()).contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.user.id").value(user1.getId()))

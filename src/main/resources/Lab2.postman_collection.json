@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "297fba24-38ab-48a3-9752-b67f1c3fa2a8",
+		"name": "Lab2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35375854"
+	},
+	"item": [
+		{
+			"name": "Trainings",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings by user id",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings/1",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings ending after date",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings/finished/2024-01-15",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings",
+						"finished",
+						"2024-01-15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get.by type",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings/activityType?activityType=RUNNING",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings",
+						"activityType"
+					],
+					"query": [
+						{
+							"key": "activityType",
+							"value": "RUNNING"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update training",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"startTime\": \"2024-01-19T07:00:00.000+00:00\",\n        \"endTime\": \"2024-01-19T08:30:00.000+00:00\",\n        \"activityType\": \"RUNNING\",\n        \"distance\": 10.5,\n        \"averageSpeed\": 18.2\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings/1",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create training",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"userId\": 1,\n        \"startTime\": \"2024-01-19T07:00:00.000+00:00\",\n        \"endTime\": \"2024-01-19T08:30:00.000+00:00\",\n        \"activityType\": \"CYCLING\",\n        \"distance\": 94.6,\n        \"averageSpeed\": 30.2\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8080/v1/trainings",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

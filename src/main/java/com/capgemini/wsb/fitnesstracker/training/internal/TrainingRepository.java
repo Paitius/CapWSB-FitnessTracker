@@ -24,4 +24,6 @@ interface TrainingRepository extends JpaRepository<Training, Long> {
                 .filter(training -> Objects.equals(training.getActivityType(), activityType))
                 .toList();
     }
+
+
 }
