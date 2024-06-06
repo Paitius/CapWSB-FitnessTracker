@@ -20,4 +20,8 @@ class TrainingController {
         return trainingService.getAllTraining().stream().map(trainingMapper::toDto).toList();
     }
 
+    @GetMapping("/{userId}")
+    public List<TrainingDto> getTrainingForUser(@PathVariable Long userId){
+        return trainingService.getTrainingForUser(userId).stream().map(trainingMapper::toDto).toList();
+    }
 }

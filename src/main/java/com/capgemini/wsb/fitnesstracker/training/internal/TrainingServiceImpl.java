@@ -29,5 +29,8 @@ public class TrainingServiceImpl implements TrainingProvider {
         return trainingRepository.findAll();
     }
 
-
+    @Override
+    public List<Training> getTrainingForUser(Long userId) {
+        return trainingRepository.findByUserId(userId);
+    }
 }
