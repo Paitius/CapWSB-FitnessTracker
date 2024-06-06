@@ -6,7 +6,18 @@ package com.capgemini.wsb.fitnesstracker.training.api;
  */
 public interface TrainingService {
 
+    /**
+     *  Creates a new training.
+     * @param training
+     * @return created training
+     */
     Training createTraining(Training training);
 
+    /**
+     *  Updates an existing training.
+     * @param id id
+     * @param training training
+     * @return updated training
+     */
     Training updateTraining(Long id, Training training);
 }

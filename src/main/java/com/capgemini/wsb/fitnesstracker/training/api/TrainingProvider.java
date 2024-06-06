@@ -17,11 +17,30 @@ public interface TrainingProvider {
      */
     Optional<Training> getTraining(Long trainingId);
 
+    /**
+     *  Returns all trainings.
+     * @return List of all trainings
+     */
     List<Training> getAllTraining();
 
+    /**
+     *  Returns all trainings for a user.
+     * @param userId
+     * @return List of all trainings
+     */
     List<Training> getTrainingForUser(Long userId);
 
+    /**
+     *  Returns all trainings after a given date.
+     * @param date  date after which the trainings were created
+     * @return List of all trainings
+     */
     List<Training> getFinishedTrainingAfterDate(Date date);
 
+    /**
+     *  Returns all trainings for a given activity type.
+     * @param activityType type of the activity
+     * @return List of all trainings
+     */
     List<Training> getAllTreningForActivityType(ActivityType activityType);
 }

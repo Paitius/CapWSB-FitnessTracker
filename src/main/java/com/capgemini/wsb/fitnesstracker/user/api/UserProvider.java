@@ -32,5 +32,10 @@ public interface UserProvider {
     List<User> findAllUsers();
 
 
+    /**
+     *  Retrieves all users who were created after the given date
+     * @param date the date after which the users were created
+     * @return An {@link Optional} containing the all users who were created after the given date
+     */
     List<User>findUserOlderThen(LocalDate date);
 }

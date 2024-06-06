@@ -2,7 +2,9 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 
 import lombok.Getter;
 
-// TODO : JavaDoc
+/**
+ *  Enumerates all possible types of activities.
+ */
 @Getter
 public enum ActivityType {
 
@@ -14,6 +16,10 @@ public enum ActivityType {
 
     private final String displayName;
 
+    /**
+     *  Constructor
+     * @param displayName display name
+     */
     ActivityType(String displayName) {
         this.displayName = displayName;
     }

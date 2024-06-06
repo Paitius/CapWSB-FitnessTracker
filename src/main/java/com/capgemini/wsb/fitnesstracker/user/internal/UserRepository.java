@@ -23,6 +23,12 @@ interface UserRepository extends JpaRepository<User, Long> {
                         .findFirst();
     }
 
+
+    /**
+     *  Query searching users by birthdate. It matches by exact match.
+     * @param date birthdate of the user
+     * @return {@link Optional} containing found user or {@link Optional#empty()} if none matched
+     */
     default List<User> findAllByBirthDate(LocalDate date){
         return findAll().stream()
                 .filter(user -> user.getBirthdate().isBefore(date))
