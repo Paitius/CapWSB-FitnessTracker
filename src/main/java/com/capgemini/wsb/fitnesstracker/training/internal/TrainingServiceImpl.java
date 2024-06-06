@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +33,10 @@ public class TrainingServiceImpl implements TrainingProvider {
     @Override
     public List<Training> getTrainingForUser(Long userId) {
         return trainingRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Training> getFinishedTrainingAfterDate(Date date){
+        return trainingRepository.findTraningAfterDate(date);
     }
 }

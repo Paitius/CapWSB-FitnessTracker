@@ -3,8 +3,11 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 import lombok.RequiredArgsConstructor;
 import com.capgemini.wsb.fitnesstracker.training.internal.TrainingDto;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,4 +27,12 @@ class TrainingController {
     public List<TrainingDto> getTrainingForUser(@PathVariable Long userId){
         return trainingService.getTrainingForUser(userId).stream().map(trainingMapper::toDto).toList();
     }
+
+    @GetMapping("/finishedTrainings/beforeDate/{date}")
+    public List<TrainingDto> getFinishedTrainingAfterDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+        return  trainingService.getFinishedTrainingAfterDate(date).stream().map(trainingMapper::toDto).toList();
+    }
+
+
+
 }
