@@ -3,17 +3,15 @@ package com.capgemini.wsb.fitnesstracker.training.api;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.Cascade;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
-
-import static org.hibernate.annotations.CascadeType.MERGE;
-
 @Entity
 @Table(name = "trainings")
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Training {
@@ -23,7 +21,6 @@ public class Training {
     private Long id;
 
     @ManyToOne
-    @Cascade(MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -57,5 +54,4 @@ public class Training {
         this.distance = distance;
         this.averageSpeed = averageSpeed;
     }
-
 }
