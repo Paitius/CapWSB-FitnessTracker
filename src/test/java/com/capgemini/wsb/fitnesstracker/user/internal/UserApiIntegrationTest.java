@@ -135,8 +135,7 @@ class UserApiIntegrationTest extends IntegrationTestBase {
         String USER_BIRTHDATE = "1999-09-29";
         String USER_EMAIL = "mike.scott@domain.com";
 
-        String creationRequest = """
-                                                 
+        String creationRequest = """                                
                 {
                 "firstName": "%s",
                 "lastName": "%s",

@@ -1,12 +1,14 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserDetailsDto;
 import com.capgemini.wsb.fitnesstracker.user.api.UserEmailDto;
 
 import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,25 +42,24 @@ class UserController {
                 .toList();
     }
     //Zwraca uzytkownika o podanym id
-    @GetMapping("/{userId}")
-    public List<UserDto> getUser(@PathVariable Long userId){
-        return userService.getUser(userId)
-                .stream()
-                .map(userMapper::toDto)
-                .toList();
+    @GetMapping("/{id}")
+    public UserDetailsDto getUser(@PathVariable Long id){
+        return userService.getUser(id).map(userMapper::userDetailsDto).orElse(null);
+
     }
     //dodaje użytkownika
-    @PostMapping("/adduser")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
     public User addUser(@RequestBody UserDto userDto){
         return userService.createUser(userMapper.toEntitySave(userDto));
     }
 
     //usuwa po id
-    @ResponseStatus(OK)
+    @ResponseStatus(NO_CONTENT)
     @DeleteMapping("/{userId}")
     public ResponseEntity<Long> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
-        return new ResponseEntity<>(userId,OK);
+        return new ResponseEntity<>(userId,NO_CONTENT);
     }
     //szuka po email
     @GetMapping("/email")
