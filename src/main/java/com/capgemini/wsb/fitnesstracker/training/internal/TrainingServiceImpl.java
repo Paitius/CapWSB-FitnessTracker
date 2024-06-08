@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -88,5 +89,10 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
     @Override
     public Training updateTraining(Long id, Training training) {
         return trainingRepository.save(training);
-    }   
+    }
+
+    @Override
+    public List<Training> getAllFiltredTrainings(double filterdValue) {
+        return trainingRepository.findTrainingByFiltredValue(filterdValue);
+    }
 }

@@ -3,6 +3,7 @@ package com.capgemini.wsb.fitnesstracker.training.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -40,5 +41,12 @@ interface TrainingRepository extends JpaRepository<Training, Long> {
                 .toList();
     }
 
+
+    default List<Training> findTrainingByFiltredValue(double filterdValue){
+        return findAll().stream()
+                .filter(training -> training.getDistance() <= filterdValue)
+                .collect(Collectors.toList());
+
+    }
 
 }

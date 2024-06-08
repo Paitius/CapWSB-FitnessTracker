@@ -102,4 +102,8 @@ class TrainingController {
         return trainingMapper.toDto(training);
     }
 
+    @GetMapping("/findTrainingByParam/{filtredValue}")
+    public List<TrainingDto> getAllTrainingFiltredByValue(@PathVariable double filterdValue){
+        return trainingService.getAllFiltredTrainings(filterdValue).stream().map(trainingMapper::toDto).collect(Collectors.toList());
+    }
 }

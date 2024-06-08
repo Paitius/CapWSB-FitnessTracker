@@ -43,4 +43,6 @@ public interface TrainingProvider {
      * @return List of all trainings
      */
     List<Training> getAllTreningForActivityType(ActivityType activityType);
+
+    List<Training> getAllFiltredTrainings(double filterdValue);
 }

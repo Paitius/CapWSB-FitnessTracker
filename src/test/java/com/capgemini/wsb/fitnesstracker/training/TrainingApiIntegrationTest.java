@@ -182,6 +182,8 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$.averageSpeed").value(0.0));
     }
 
+
+
     private static User generateClient() {
         return new User(randomUUID().toString(), randomUUID().toString(), now(), randomUUID().toString());
     }

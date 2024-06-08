@@ -22,6 +22,7 @@ Stworzone API powinno pozwalać na:
 - [x] wyszukiwanie wszystkich treningów dla konkretnej aktywności (np. wszystkie treningi biegowe)
 - [x] utworzenie nowego treningu
 - [x] aktualizacja treningu (dowolnie wybrane pole np. dystans)
+- [x] filtrowanie po treningu ktorego systans jest mniejszy niz podana wartosc
 
 ### Wymagania techniczne
 
