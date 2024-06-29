@@ -1,5 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.statistics.api;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StatisticsProvider {
@@ -11,6 +12,7 @@ public interface StatisticsProvider {
      * @param statisticsId id of the statistics to be searched
      * @return An {@link Optional} containing the located Statistics, or {@link Optional#empty()} if not found
      */
-    Optional<Statistics> getStatistics(Long statisticsId);
+    List<Statistics> getStatistics(Long statisticsId);
 
+    List<Statistics> findStatisticsByCaloriesGreaterThan(int calories);
 }

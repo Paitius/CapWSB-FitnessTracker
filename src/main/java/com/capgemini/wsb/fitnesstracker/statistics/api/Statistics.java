@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.statistics.api;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserTrainingDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,4 +30,33 @@ public class Statistics {
     @Column(name = "total_calories_burned")
     private int totalCaloriesBurned;
 
+
+    public Statistics(
+            final User user,
+            final int totalTrainings,
+            final double totalDistance,
+            final int totalCaloriesBurned
+    ) {
+        this.user = user;
+        this.totalTrainings = totalTrainings;
+        this.totalDistance = totalDistance;
+        this.totalCaloriesBurned = totalCaloriesBurned;
+    }
+
+    public Statistics(
+            final Long id,
+            final User user,
+            final int totalTrainings,
+            final double totalDistance,
+            final int totalCaloriesBurned
+    ) {
+        this.id = id;
+        this.user = user;
+        this.totalTrainings = totalTrainings;
+        this.totalDistance = totalDistance;
+        this.totalCaloriesBurned = totalCaloriesBurned;
+    }
+
+    public Statistics(Long id, UserTrainingDto user, int totalTrainings, double totalDistance, int totalCaloriesBurned) {
+    }
 }

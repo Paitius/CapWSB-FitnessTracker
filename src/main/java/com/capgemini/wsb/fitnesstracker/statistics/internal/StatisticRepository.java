@@ -14,4 +14,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 interface StatisticRepository extends JpaRepository<Statistics, Long> {
+    default List<Statistics> getStatisticsForUser(Long statisticsId){
+        return findAll().stream().filter(statistic -> statistic.getUser().getId().equals(statisticsId)).toList();
+    }
+
+    default List<Statistics> findByBurnedCalories(int calories){
+        return findAll().stream().filter(statistic -> statistic.getTotalCaloriesBurned() > calories).toList();
+    };
 }
